@@ -9,7 +9,8 @@ import kotlin.concurrent.schedule
 
 class ListViewModel(
     private val repo: WeatherRepository = app().weatherRepo
-) : ViewModel() {
+) : ViewModel(), ForecastAdapter.ForecastAdapterOnItemClickHandler {
+
 
     val viewData = MediatorLiveData<ListViewData>()
 
@@ -24,11 +25,8 @@ class ListViewModel(
         }
     }
 
-    private fun startTimeUpdates() {
-        Timer().schedule(500, 1000) {
-            viewData.postValue(initialViewData.copy(currentTime = Date()))
-            Log.d("observe", "TIMER TICK")
-        }
+    override fun onItemClick(date: Date?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     fun <S> MediatorLiveData<*>.addSourceNonNull(source: LiveData<S>, observer: (S) -> Unit) {

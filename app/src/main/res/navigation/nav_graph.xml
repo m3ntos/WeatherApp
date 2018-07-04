@@ -8,7 +8,7 @@
         android:id="@+id/mainFragment"
         android:name="com.example.rafal.weatherapp.ui.list.ListFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" >
+        tools:layout="@layout/list_fragment" >
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
