@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.rafal.weatherapp.R
+import kotlinx.android.synthetic.main.details_fragment.*
 
 class DetailsFragment : Fragment() {
 
@@ -28,6 +29,10 @@ class DetailsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(DetailsViewModel::class.java)
         // TODO: Use the ViewModel
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val test = DetailsFragmentArgs.fromBundle(arguments).weatherEntryId
     }
 
 }

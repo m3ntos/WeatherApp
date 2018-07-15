@@ -3,9 +3,14 @@ package com.example.rafal.weatherapp.ui.list
 import android.arch.lifecycle.*
 import android.util.Log
 import com.example.rafal.weatherapp.app
+import com.example.rafal.weatherapp.data.WeatherEntry
 import com.example.rafal.weatherapp.data.WeatherRepository
 import java.util.*
 import kotlin.concurrent.schedule
+
+interface TasksActions {
+    fun onWeatherDetails(weatherEntryId: Int)
+}
 
 class ListViewModel(
     private val repo: WeatherRepository = app().weatherRepo
@@ -25,8 +30,8 @@ class ListViewModel(
         }
     }
 
-    override fun onItemClick(date: Date?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onItemClick(weatherEntryId: Int) {
+        viewData.postValue(viewData.value?.copy(goToDetails = GoToDetailsAction(weatherEntryId).toAction()))
     }
 
     fun <S> MediatorLiveData<*>.addSourceNonNull(source: LiveData<S>, observer: (S) -> Unit) {

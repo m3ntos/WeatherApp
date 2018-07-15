@@ -305,7 +305,7 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
      * The interface that receives onItemClick messages.
      */
     public interface ForecastAdapterOnItemClickHandler {
-        void onItemClick(Date date);
+        void onItemClick(int id);
     }
 
     /**
@@ -343,8 +343,8 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapt
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            Date date = mForecast.get(adapterPosition).getDate();
-            mClickHandler.onItemClick(date);
+            int id = mForecast.get(adapterPosition).getId();
+            mClickHandler.onItemClick(id);
         }
     }
 }

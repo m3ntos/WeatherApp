@@ -2,20 +2,25 @@
 <navigation xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/listFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/listFragment"
         android:name="com.example.rafal.weatherapp.ui.list.ListFragment"
-        android:label="main_fragment"
+        android:label="list_fragment"
         tools:layout="@layout/list_fragment" >
         <action
-            android:id="@+id/action_mainFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            android:id="@+id/showDetails"
+            app:destination="@id/detailsFragment" >
+        </action>
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.rafal.weatherapp.ui.details.DetailsFragment"
         android:label="details_fragment"
-        tools:layout="@layout/details_fragment" />
+        tools:layout="@layout/details_fragment">
+        <argument
+            android:name="weatherEntryId"
+            app:type="integer" />
+    </fragment>
 </navigation>

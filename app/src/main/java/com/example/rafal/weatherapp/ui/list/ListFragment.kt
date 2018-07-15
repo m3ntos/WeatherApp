@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.rafal.weatherapp.R
 import kotlinx.android.synthetic.main.list_fragment.*
 
@@ -37,13 +38,17 @@ class ListFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(activity!!)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
 
     private fun updateUi(viewData: ListViewData) {
 
-        forecastAdapter.swapForecast(viewData.items)
+        with(viewData) {
+            forecastAdapter.swapForecast(items)
+            goToDetails?.handle { navigateToDetails(it.weatherEntryId) }
+        }
+    }
+
+    private fun navigateToDetails(weatherEntryId: Int) {
+        val action = ListFragmentDirections.showDetails(weatherEntryId)
+        findNavController().navigate(action)
     }
 }
